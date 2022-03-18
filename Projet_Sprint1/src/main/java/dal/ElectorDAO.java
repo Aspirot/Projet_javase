@@ -4,11 +4,12 @@ import bll.model.Elector;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ElectorDAO implements IElectorDAO{
     List<Elector> electors;
 
-    ElectorDAO(InMemoryRepository memoryRepository){
+    public ElectorDAO(InMemoryRepository memoryRepository){
         electors = new ArrayList<>();
         memoryRepository.getElectors().stream().forEach(e -> addElector(e));
     }
@@ -20,6 +21,11 @@ public class ElectorDAO implements IElectorDAO{
     @Override
     public List<Elector> getAllElectors() {
         return this.electors;
+    }
+
+    @Override
+    public Optional<Elector> fetchElectorById(int electorId) {
+        return this.electors.stream().filter(e -> e.getId()==electorId).findFirst();
     }
 
     @Override

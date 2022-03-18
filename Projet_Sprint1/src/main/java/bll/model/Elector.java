@@ -9,7 +9,7 @@ public class Elector {
     private int weight;
     private String email;
 
-    public Elector(String login, String password, int weight, String email, int voterId) {
+    public Elector(String login, String password, int weight, String email) {
         this.id = AUTO_INCREMENT_ID++;
         this.login = login;
         this.password = password;

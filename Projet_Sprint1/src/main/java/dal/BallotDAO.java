@@ -4,11 +4,12 @@ import bll.model.Ballot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BallotDAO implements IBallotDAO{
     List<Ballot> ballots;//polls
 
-    BallotDAO(InMemoryRepository memoryRepository){
+    public BallotDAO(InMemoryRepository memoryRepository){
         ballots = new ArrayList<>();
         memoryRepository.getBallots().stream().forEach(b -> addBallot(b));
     }
@@ -20,6 +21,11 @@ public class BallotDAO implements IBallotDAO{
     @Override
     public List<Ballot> getAllBallots() {
         return this.ballots;
+    }
+
+    @Override
+    public Optional<Ballot> fetchBallotById(int ballotId) {
+        return this.ballots.stream().filter(b -> b.getId()==ballotId).findFirst();
     }
 
     @Override
