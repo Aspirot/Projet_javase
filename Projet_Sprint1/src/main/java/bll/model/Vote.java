@@ -53,6 +53,10 @@ public class Vote {
         return pollSubjectId;
     }
 
+    public void setPollSubjectId(int pollSubjectId) {
+        this.pollSubjectId = pollSubjectId;
+    }
+
     public int getElectorId() {
         return electorId;
     }
