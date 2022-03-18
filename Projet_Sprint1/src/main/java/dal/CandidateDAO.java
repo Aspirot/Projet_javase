@@ -1,4 +1,4 @@
 package dal;
 
-public class CandidateDAO {
+public class CandidateDAO implements ICandidateDAO{
 }

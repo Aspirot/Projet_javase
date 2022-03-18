@@ -1,4 +1,4 @@
 package dal;
 
-public class ElectorDAO {
+public class ElectorDAO implements IElectorDAO{
 }

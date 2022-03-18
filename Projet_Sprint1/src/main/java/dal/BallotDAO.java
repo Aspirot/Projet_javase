@@ -1,4 +1,4 @@
 package dal;
 
-public class BallotDAO {
+public class BallotDAO implements IBallotDAO{
 }
