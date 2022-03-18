@@ -10,11 +10,11 @@ public class VoteDAO implements IVoteDAO{
 
     public VoteDAO(InMemoryRepository memoryRepository) {
         this.votes = new ArrayList<>();
-        memoryRepository.getVotes().stream().forEach(v -> saveVote(v));
+        memoryRepository.getVotes().stream().forEach(v -> addVote(v));
     }
 
     @Override
-    public void saveVote(Vote vote) {
+    public void addVote(Vote vote) {
         this.votes.add(vote);
     }
 
