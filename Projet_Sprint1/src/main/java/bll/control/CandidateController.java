@@ -9,9 +9,9 @@ import dal.ICandidateDAO;
 public class CandidateController {
     private ICandidateDAO candidateDAO;
 
-    public void addCanditateToElection(int canditateId, int pollId, BallotController ballotController)
+    public void addCandidateToElection(int candidateId, int pollId, BallotController ballotController)
     {
-        ballotController.getBallotDAO().fetchBallotById(pollId).get().addCandidate(candidateDAO.getAllCanditates().stream().filter(c -> c.getId()==canditateId).findFirst().get());
+        ballotController.getBallotDAO().fetchBallotById(pollId).get().addCandidate(candidateDAO.getAllCanditates().stream().filter(c -> c.getId()==candidateId).findFirst().get());
     }
 
     public CandidateController(CandidateDAO candidateDAO){
