@@ -1,4 +1,4 @@
 package bll.control;
 
-public class BallotControlle {
+public class BallotController {
 }
