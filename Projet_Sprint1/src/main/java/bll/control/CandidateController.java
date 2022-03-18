@@ -11,7 +11,7 @@ public class CandidateController {
 
     public void addCanditateToElection(int canditateId, int pollId, BallotController ballotController)
     {
-        BallotController.getBallotDAO().fetchBallotById(pollId).get().add(candidateDAO.getAllCanditates().stream().filter(c -> c.getId()==canditateId).findFirst());
+        ballotController.getBallotDAO().fetchBallotById(pollId).get().addCandidate(candidateDAO.getAllCanditates().stream().filter(c -> c.getId()==canditateId).findFirst().get());
     }
 
     public CandidateController(CandidateDAO candidateDAO){
