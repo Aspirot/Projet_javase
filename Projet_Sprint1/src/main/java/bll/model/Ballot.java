@@ -16,8 +16,9 @@ public class Ballot {
     private List<Candidate> candidates;
     private List<Elector> electors;
     private Forum forum;
+    private int ownerId;
 
-    public Ballot(String title, Date start, Date end, Boolean isPublic, Boolean isAnonymous, Forum forum) {
+    public Ballot(String title, Date start, Date end, Boolean isPublic, Boolean isAnonymous, Forum forum, int ownerId) {
         this.title = title;
         this.start = start;
         this.end = end;
@@ -27,6 +28,7 @@ public class Ballot {
         this.candidates = new ArrayList<>();
         this.electors = new ArrayList<>();
         this.forum = forum;
+        this.ownerId = ownerId;
     }
 
     public void addCandidate(Candidate candidate){
@@ -103,5 +105,9 @@ public class Ballot {
 
     public Forum getForum() {
         return forum;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
     }
 }
