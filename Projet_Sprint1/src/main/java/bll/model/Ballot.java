@@ -1,6 +1,7 @@
 package bll.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Ballot {
     private static int AUTO_INCREMENT_ID = 0;
@@ -11,6 +12,7 @@ public class Ballot {
     private Date end;
     private Boolean isPublic;
     private Boolean isAnonymous;
+    private List<Candidate> candidateList;
 
     public Ballot(String title, Date start, Date end, Boolean isPublic, Boolean isAnonymous) {
         this.title = title;

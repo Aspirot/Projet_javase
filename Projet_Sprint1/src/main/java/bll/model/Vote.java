@@ -8,11 +8,17 @@ public class Vote {
     private int id;
     private Date when;
     private int rank;
+    private int pollId;
+    private int pollSubjectId;
+    private int electorId;
 
-    public Vote(Date when, int rank) {
+    public Vote(Date when, int rank, int pollId, int pollSubjectId, int electorId) {
         this.id = AUTO_INCREMENT_ID++;
         this.when = when;
         this.rank = rank;
+        this.pollId = pollId;
+        this.pollSubjectId = pollSubjectId;
+        this.electorId = electorId;
     }
 
     public int getId() {
@@ -37,5 +43,17 @@ public class Vote {
 
     public void setRank(int rank) {
         this.rank = rank;
+    }
+
+    public int getPollId() {
+        return pollId;
+    }
+
+    public int getPollSubjectId() {
+        return pollSubjectId;
+    }
+
+    public int getElectorId() {
+        return electorId;
     }
 }
