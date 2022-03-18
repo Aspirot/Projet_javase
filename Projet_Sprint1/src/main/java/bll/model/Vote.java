@@ -1,18 +1,18 @@
 package bll.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Vote {
     private static int AUTO_INCREMENT_ID = 0;
 
     private int id;
-    private Date when;
+    private LocalDate when;
     private int rank;
     private int pollId;
     private int pollSubjectId;
     private int electorId;
 
-    public Vote(Date when, int rank, int pollId, int pollSubjectId, int electorId) {
+    public Vote(LocalDate when, int rank, int pollId, int pollSubjectId, int electorId) {
         this.id = AUTO_INCREMENT_ID++;
         this.when = when;
         this.rank = rank;
@@ -29,11 +29,11 @@ public class Vote {
         this.id = id;
     }
 
-    public Date getWhen() {
+    public LocalDate getWhen() {
         return when;
     }
 
-    public void setWhen(Date when) {
+    public void setWhen(LocalDate when) {
         this.when = when;
     }
 

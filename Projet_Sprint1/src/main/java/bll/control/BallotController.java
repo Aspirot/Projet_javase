@@ -5,6 +5,7 @@ import bll.model.Forum;
 import dal.BallotDAO;
 import dal.IBallotDAO;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class BallotController {
@@ -14,7 +15,7 @@ public class BallotController {
         this.ballotDAO = ballotDAO;
     }
 
-    public void createBallot(String title, Date start, Date end, Boolean isPublic, Boolean isAnonymous, Forum forum, int ownerId){
+    public void createBallot(String title, LocalDate start, LocalDate end, Boolean isPublic, Boolean isAnonymous, Forum forum, int ownerId){
         Ballot ballot = new Ballot(title,start,end,isPublic,isAnonymous,forum,ownerId);
         this.ballotDAO.addBallot(ballot);
     }

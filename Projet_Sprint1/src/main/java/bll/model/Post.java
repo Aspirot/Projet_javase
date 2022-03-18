@@ -1,17 +1,18 @@
 package bll.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Post {
     private static int AUTO_INCREMENT_ID = 0;
 
     private int id;
-    private Date date;
+    private LocalDate date;
     private String message;
     private int forumId;
     private int electorId;
 
-    public Post(Date date, String message, int forumId, int electorId) {
+    public Post(LocalDate date, String message, int forumId, int electorId) {
         this.id = AUTO_INCREMENT_ID++;
         this.date = date;
         this.message = message;
@@ -27,11 +28,11 @@ public class Post {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

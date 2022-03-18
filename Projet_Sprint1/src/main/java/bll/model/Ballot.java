@@ -1,5 +1,6 @@
 package bll.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,8 +10,8 @@ public class Ballot {
 
     private int id;
     private String title;
-    private Date start;
-    private Date end;
+    private LocalDate start;
+    private LocalDate end;
     private Boolean isPublic;
     private Boolean isAnonymous;
     private List<Candidate> candidates;
@@ -18,7 +19,7 @@ public class Ballot {
     private Forum forum;
     private int ownerId;
 
-    public Ballot(String title, Date start, Date end, Boolean isPublic, Boolean isAnonymous, Forum forum, int ownerId) {
+    public Ballot(String title, LocalDate start, LocalDate end, Boolean isPublic, Boolean isAnonymous, Forum forum, int ownerId) {
         this.title = title;
         this.start = start;
         this.end = end;
@@ -55,19 +56,19 @@ public class Ballot {
         this.title = title;
     }
 
-    public Date getStart() {
+    public LocalDate getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(LocalDate start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public LocalDate getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(LocalDate end) {
         this.end = end;
     }
 

@@ -1,11 +1,13 @@
 package dal;
 
 import bll.model.*;
+import net.andreinc.mockneat.MockNeat;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryRepository {
+
     private List<Vote> votes;
     private List<Candidate> candidates;
     private List<Elector> electors;
@@ -20,6 +22,8 @@ public class InMemoryRepository {
         this.forums = new ArrayList<>();
         this.posts = new ArrayList<>();
         this.votes = new ArrayList<>();
+
+        MockNeat mock = MockNeat.threadLocal();
     }
 
     public List<Vote> getVotes() {

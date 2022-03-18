@@ -1,5 +1,6 @@
 package bll.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Forum {
@@ -7,9 +8,9 @@ public class Forum {
 
     private int id;
     private String title;
-    private Date createdOn;
+    private LocalDate createdOn;
 
-    public Forum(String title, Date createdOn) {
+    public Forum(String title, LocalDate createdOn) {
         this.id = AUTO_INCREMENT_ID++;
         this.title = title;
         this.createdOn = createdOn;
@@ -31,11 +32,11 @@ public class Forum {
         this.title = title;
     }
 
-    public Date getCreatedOn() {
+    public LocalDate getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Date createdOn) {
+    public void setCreatedOn(LocalDate createdOn) {
         this.createdOn = createdOn;
     }
 }
