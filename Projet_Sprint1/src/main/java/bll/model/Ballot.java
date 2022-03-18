@@ -1,5 +1,6 @@
 package bll.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,15 +13,28 @@ public class Ballot {
     private Date end;
     private Boolean isPublic;
     private Boolean isAnonymous;
-    private List<Candidate> candidateList;
+    private List<Candidate> candidates;
+    private List<Elector> electors;
+    private Forum forum;
 
-    public Ballot(String title, Date start, Date end, Boolean isPublic, Boolean isAnonymous) {
+    public Ballot(String title, Date start, Date end, Boolean isPublic, Boolean isAnonymous, Forum forum) {
         this.title = title;
         this.start = start;
         this.end = end;
         this.isPublic = isPublic;
         this.isAnonymous = isAnonymous;
         this.id = AUTO_INCREMENT_ID++;
+        this.candidates = new ArrayList<>();
+        this.electors = new ArrayList<>();
+        this.forum = forum;
+    }
+
+    public void addCandidate(Candidate candidate){
+        this.candidates.add(candidate);
+    }
+
+    public void addElector(Elector elector){
+        this.electors.add(elector);
     }
 
     public int getId() {
@@ -69,5 +83,25 @@ public class Ballot {
 
     public void setAnonymous(Boolean anonymous) {
         isAnonymous = anonymous;
+    }
+
+    public List<Candidate> getCandidates() {
+        return candidates;
+    }
+
+    public void setCandidates(List<Candidate> candidates) {
+        this.candidates = candidates;
+    }
+
+    public List<Elector> getElectors() {
+        return electors;
+    }
+
+    public void setElectors(List<Elector> electors) {
+        this.electors = electors;
+    }
+
+    public Forum getForum() {
+        return forum;
     }
 }

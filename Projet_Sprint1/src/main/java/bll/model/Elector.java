@@ -8,7 +8,6 @@ public class Elector {
     private String password;
     private int weight;
     private String email;
-    private int voterId;
 
     public Elector(String login, String password, int weight, String email, int voterId) {
         this.id = AUTO_INCREMENT_ID++;
@@ -16,7 +15,6 @@ public class Elector {
         this.password = password;
         this.weight = weight;
         this.email = email;
-        this.voterId = voterId;
     }
 
     public int getId() {
@@ -57,13 +55,5 @@ public class Elector {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getVoterId() {
-        return voterId;
-    }
-
-    public void setVoterId(int voterId) {
-        this.voterId = voterId;
     }
 }

@@ -8,11 +8,15 @@ public class Post {
     private int id;
     private Date date;
     private String message;
+    private int forumId;
+    private int electorId;
 
-    public Post( Date date, String message) {
+    public Post(Date date, String message, int forumId, int electorId) {
         this.id = AUTO_INCREMENT_ID++;
         this.date = date;
         this.message = message;
+        this.forumId = forumId;
+        this.electorId = electorId;
     }
 
     public int getId() {
