@@ -1,7 +1,6 @@
 package bll.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Post {
     private static int AUTO_INCREMENT_ID = 0;

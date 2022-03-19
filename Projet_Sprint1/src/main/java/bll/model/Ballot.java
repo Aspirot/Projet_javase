@@ -16,19 +16,19 @@ public class Ballot {
     private Boolean isAnonymous;
     private List<Candidate> candidates;
     private List<Elector> electors;
-    private Forum forum;
+    private int forumid;
     private int ownerId;
 
-    public Ballot(String title, LocalDate start, LocalDate end, Boolean isPublic, Boolean isAnonymous, Forum forum, int ownerId) {
+    public Ballot(String title, LocalDate start, LocalDate end, Boolean isPublic, Boolean isAnonymous, int forumid, int ownerId) {
+        this.id = AUTO_INCREMENT_ID++;
         this.title = title;
         this.start = start;
         this.end = end;
         this.isPublic = isPublic;
         this.isAnonymous = isAnonymous;
-        this.id = AUTO_INCREMENT_ID++;
         this.candidates = new ArrayList<>();
         this.electors = new ArrayList<>();
-        this.forum = forum;
+        this.forumid = forumid;
         this.ownerId = ownerId;
     }
 
@@ -104,11 +104,15 @@ public class Ballot {
         this.electors = electors;
     }
 
-    public Forum getForum() {
-        return forum;
+    public int getForum() {
+        return forumid;
     }
 
     public int getOwnerId() {
         return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 }
