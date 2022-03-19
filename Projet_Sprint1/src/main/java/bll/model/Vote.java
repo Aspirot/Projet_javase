@@ -49,6 +49,14 @@ public class Vote {
         return pollId;
     }
 
+    public void setPollId(int pollId) {
+        this.pollId = pollId;
+    }
+
+    public void setElectorId(int electorId) {
+        this.electorId = electorId;
+    }
+
     public int getPollSubjectId() {
         return pollSubjectId;
     }

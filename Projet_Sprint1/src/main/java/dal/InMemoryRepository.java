@@ -70,9 +70,9 @@ public class InMemoryRepository {
                 constructor(Vote.class).params(
                         localDates(),
                         intSeq().start(1).max(3),
-                        1,
+                        intSeq().start(1).max(3),
                         generatorTo5,
-                        intSeq().start(1)
+                        intSeq().start(1).max(10)
                 );
 
         this.forums = forumGenerator.list(3).get();
@@ -80,7 +80,22 @@ public class InMemoryRepository {
         this.electors = electorGenerator.list(10).get();
         this.candidates = candidateGenerator.list(5).get();
         this.ballots = ballotGenerator.list(3).get();
-        this.votes = voteGenerator.list(10).get();
+        this.votes = voteGeneration();
+
+        for (Elector elector:this.electors) {
+            for (Ballot ballot:this.ballots) {
+                ballot.addElector(elector);
+            }
+        }
+        for (Candidate candidate:this.candidates) {
+            for (Ballot ballot:this.ballots) {
+                ballot.addCandidate(candidate);
+            }
+        }
+    }
+
+    private List<Vote> voteGeneration() {
+        List
     }
 
 

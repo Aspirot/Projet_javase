@@ -126,7 +126,7 @@ public class Ballot {
                 ", isPublic=" + isPublic +
                 ", isAnonymous=" + isAnonymous +
                 //", candidates=" + candidates +
-                //", electors=" + electors +
+                ", electors=" + electors +
                 ", forumId=" + forumId +
                 ", ownerId=" + ownerId +
                 '}';

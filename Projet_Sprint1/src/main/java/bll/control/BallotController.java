@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 public class BallotController {
-    private IBallotDAO ballotDAO;
+    private static IBallotDAO ballotDAO;
 
     public BallotController(IBallotDAO ballotDAO){
         this.ballotDAO = ballotDAO;
@@ -31,14 +31,9 @@ public class BallotController {
         List<Vote> allRank1Votes = voteController.getVoteDAO().getAllVotes().stream().filter(v -> v.getPollId()==ballotId).toList().stream().filter(v -> v.getRank()==1).toList();
         int winner = -1;
         for (Candidate candidate:ballotDAO.fetchBallotById(ballotId).get().getCandidates()) {
-            int currentCandidateVotes = 0;
-            for (Vote vote:allRank1Votes) {
-                if(candidate.getId()==vote.getPollSubjectId()){
-                    currentCandidateVotes++;
-                }
-            }
-            if(winner<currentCandidateVotes)
-                winner = currentCandidateVotes;
+            int currentCand = CandidateController.findNumberOfInFavorByCandidate(candidate.getId());
+            if(winner<currentCand)
+                winner=currentCand;
         }
         return winner;
     }
@@ -47,7 +42,7 @@ public class BallotController {
         return 1;
     }
 
-    public IBallotDAO getBallotDAO() {
+    public static IBallotDAO getBallotDAO() {
         return ballotDAO;
     }
 }
