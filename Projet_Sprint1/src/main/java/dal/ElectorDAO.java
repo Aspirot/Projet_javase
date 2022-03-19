@@ -30,6 +30,6 @@ public class ElectorDAO implements IElectorDAO{
 
     @Override
     public void deleteElector(int electorId) {
-        this.electors.remove(this.electors.stream().filter(e -> e.getId()==electorId).findFirst());
+        this.electors.remove(this.electors.stream().filter(e -> e.getId()==electorId).findFirst().get());
     }
 }

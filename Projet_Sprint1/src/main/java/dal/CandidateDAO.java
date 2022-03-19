@@ -25,6 +25,6 @@ public class CandidateDAO implements ICandidateDAO{
 
     @Override
     public void deleteCanditate(int candidateId) {
-        this.candidates.remove(this.candidates.stream().filter(c -> c.getId()==candidateId).findFirst());
+        this.candidates.remove(this.candidates.stream().filter(c -> c.getId()==candidateId).findFirst().get());
     }
 }

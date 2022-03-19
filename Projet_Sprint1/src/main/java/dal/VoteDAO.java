@@ -30,6 +30,6 @@ public class VoteDAO implements IVoteDAO{
 
     @Override
     public void deleteVote(int voteId) {
-        this.votes.remove(this.votes.stream().filter(v -> v.getId()==voteId).findFirst());
+        this.votes.remove(this.votes.stream().filter(v -> v.getId()==voteId).findFirst().get());
     }
 }

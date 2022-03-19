@@ -7,6 +7,7 @@ import net.andreinc.mockneat.abstraction.MockUnitInt;
 import java.util.List;
 
 import static net.andreinc.mockneat.unit.objects.Constructor.constructor;
+import static net.andreinc.mockneat.unit.seq.IntSeq.intSeq;
 import static net.andreinc.mockneat.unit.text.Strings.strings;
 import static net.andreinc.mockneat.unit.time.LocalDates.localDates;
 import static net.andreinc.mockneat.unit.types.Bools.bools;
@@ -29,6 +30,7 @@ public class InMemoryRepository {
         MockUnitInt generatorTo3 = ints().range(1, 4);
         MockUnitInt generatorTo5 = ints().range(1, 6);
         MockUnitInt generatorTo10 = ints().range(1, 11);
+
         MockUnit<Forum> forumGenerator =
                 constructor(Forum.class).params(
                         strings(),
@@ -61,24 +63,24 @@ public class InMemoryRepository {
                         localDates(),
                         bools(),
                         bools(),
-                        generatorTo3,
+                        intSeq().start(1),
                         generatorTo3
                         );
         MockUnit<Vote> voteGenerator =
                 constructor(Vote.class).params(
                         localDates(),
+                        intSeq().start(1).max(3),
                         1,
-                        generatorTo3,
                         generatorTo5,
-                        generatorTo10
+                        intSeq().start(1)
                 );
 
         this.forums = forumGenerator.list(3).get();
         this.posts = postGenerator.list(12).get();
         this.electors = electorGenerator.list(10).get();
         this.candidates = candidateGenerator.list(5).get();
-        this.votes = voteGenerator.list(10).get();
         this.ballots = ballotGenerator.list(3).get();
+        this.votes = voteGenerator.list(10).get();
     }
 
 
