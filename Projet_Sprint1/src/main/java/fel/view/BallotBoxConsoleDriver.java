@@ -25,16 +25,21 @@ public class BallotBoxConsoleDriver {
         /* Testing DAO CRUD methods
         voteDAO.addVote(new Vote(LocalDate.now(),1,3,4,10));
         voteDAO.getAllVotes().stream().forEach(System.out::println);
-        voteDAO.deleteVote(10);
-        voteDAO.changeVote(11,3);*/
+        voteDAO.deleteVote(10);*/
         //voteDAO.getAllVotes().stream().forEach(System.out::println);
-        //ballotDAO.fetchBallotById(1).stream().forEach(System.out::println);
+        ballotDAO.fetchBallotById(2).stream().forEach(System.out::println);
 
         VoteController voteController = new VoteController(voteDAO);
         BallotController ballotController = new BallotController(ballotDAO);
         CandidateController candidateController = new CandidateController(candidateDAO);
         ElectorController electorController = new ElectorController(electorDAO);
 
+        electorController.addElectorToElection(8,2);
+        candidateController.addCandidateToElection(5,2);
+        ballotDAO.fetchBallotById(2).stream().forEach(System.out::println);
+
+        System.out.println(ballotController.findWinnerUsingLoneScan(1));
         System.out.println(ballotController.findWinnerUsingLoneScan(2));
+        System.out.println(ballotController.findWinnerUsingLoneScan(3));
     }
 }

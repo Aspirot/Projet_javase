@@ -19,8 +19,7 @@ public class ElectorController {
         this.electorDAO.addElector(newElector);
     }
 
-    public /*BallotController*/void addElectorToElection(int electorId, int pollId){
+    public void addElectorToElection(int electorId, int pollId){
         BallotController.getBallotDAO().fetchBallotById(pollId).get().addElector(this.electorDAO.fetchElectorById(electorId).get());
-        /*return ballotController;*/
     }
 }

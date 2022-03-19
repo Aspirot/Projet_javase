@@ -5,8 +5,7 @@ import net.andreinc.mockneat.MockNeat;
 import net.andreinc.mockneat.abstraction.MockUnit;
 import net.andreinc.mockneat.abstraction.MockUnitInt;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static net.andreinc.mockneat.unit.objects.Constructor.constructor;
 import static net.andreinc.mockneat.unit.seq.IntSeq.intSeq;
@@ -82,57 +81,70 @@ public class InMemoryRepository {
         this.electors = electorGenerator.list(10).get();
         this.candidates = candidateGenerator.list(5).get();
         this.ballots = ballotGenerator.list(3).get();
-        this.votes = new ArrayList<>();
 
-        for (Elector elector:this.electors) {
-            for (Ballot ballot:this.ballots) {
-                ballot.addElector(elector);
-            }
-        }
-        for (Candidate candidate:this.candidates) {
-            for (Ballot ballot:this.ballots) {
-                ballot.addCandidate(candidate);
-            }
-        }
+        //ballot 1 has 4 candidates
+        this.ballots.get(0).addCandidate(this.candidates.get(0));
+        this.ballots.get(0).addCandidate(this.candidates.get(2));
+        this.ballots.get(0).addCandidate(this.candidates.get(3));
+        this.ballots.get(0).addCandidate(this.candidates.get(4));
+        //ballot 2 has 2 candidates
+        this.ballots.get(1).addCandidate(this.candidates.get(1));
+        this.ballots.get(1).addCandidate(this.candidates.get(3));
+        //ballot 3 has 5 candidates
+        this.ballots.get(2).addCandidate(this.candidates.get(0));
+        this.ballots.get(2).addCandidate(this.candidates.get(1));
+        this.ballots.get(2).addCandidate(this.candidates.get(2));
+        this.ballots.get(2).addCandidate(this.candidates.get(3));
+        this.ballots.get(2).addCandidate(this.candidates.get(4));
+
+        //ballot 1 has 7 electors
+        this.ballots.get(0).addElector(this.electors.get(0));
+        this.ballots.get(0).addElector(this.electors.get(2));
+        this.ballots.get(0).addElector(this.electors.get(4));
+        this.ballots.get(0).addElector(this.electors.get(5));
+        this.ballots.get(0).addElector(this.electors.get(7));
+        this.ballots.get(0).addElector(this.electors.get(8));
+        this.ballots.get(0).addElector(this.electors.get(9));
+        //ballot 2 has 4 electors
+        this.ballots.get(1).addElector(this.electors.get(1));
+        this.ballots.get(1).addElector(this.electors.get(2));
+        this.ballots.get(1).addElector(this.electors.get(3));
+        this.ballots.get(1).addElector(this.electors.get(8));
+        //ballot 3 has 10 electors
+        this.ballots.get(2).addElector(this.electors.get(0));
+        this.ballots.get(2).addElector(this.electors.get(1));
+        this.ballots.get(2).addElector(this.electors.get(2));
+        this.ballots.get(2).addElector(this.electors.get(3));
+        this.ballots.get(2).addElector(this.electors.get(4));
+        this.ballots.get(2).addElector(this.electors.get(5));
+        this.ballots.get(2).addElector(this.electors.get(6));
+        this.ballots.get(2).addElector(this.electors.get(7));
+        this.ballots.get(2).addElector(this.electors.get(8));
+        this.ballots.get(2).addElector(this.electors.get(9));
+
+        this.votes = new ArrayList<>();
         for (Ballot ballot:this.ballots) {
             this.votes.addAll(voteGeneration(ballot.getId()));
         }
     }
 
     private List<Vote> voteGeneration(int pollId) {
-        List<Vote> voteList = new ArrayList<>();
-        MockNeat mock = MockNeat.threadLocal();
-        voteList.add(new Vote(mock.localDates().get(),1,pollId,2,1));
-        voteList.add(new Vote(mock.localDates().get(),1,pollId,1,2));
-        voteList.add(new Vote(mock.localDates().get(),1,pollId,3,3));
-        voteList.add(new Vote(mock.localDates().get(),1,pollId,1,4));
-        voteList.add(new Vote(mock.localDates().get(),1,pollId,2,5));
-        voteList.add(new Vote(mock.localDates().get(),1,pollId,5,6));
-        voteList.add(new Vote(mock.localDates().get(),1,pollId,4,7));
-        voteList.add(new Vote(mock.localDates().get(),1,pollId,1,8));
-        voteList.add(new Vote(mock.localDates().get(),1,pollId,2,9));
-        voteList.add(new Vote(mock.localDates().get(),1,pollId,5,10));
-        voteList.add(new Vote(mock.localDates().get(),2,pollId,5,1));
-        voteList.add(new Vote(mock.localDates().get(),2,pollId,4,2));
-        voteList.add(new Vote(mock.localDates().get(),2,pollId,5,3));
-        voteList.add(new Vote(mock.localDates().get(),2,pollId,5,4));
-        voteList.add(new Vote(mock.localDates().get(),2,pollId,3,5));
-        voteList.add(new Vote(mock.localDates().get(),2,pollId,4,6));
-        voteList.add(new Vote(mock.localDates().get(),2,pollId,2,7));
-        voteList.add(new Vote(mock.localDates().get(),2,pollId,5,8));
-        voteList.add(new Vote(mock.localDates().get(),2,pollId,5,9));
-        voteList.add(new Vote(mock.localDates().get(),2,pollId,2,10));
-        voteList.add(new Vote(mock.localDates().get(),3,pollId,1,1));
-        voteList.add(new Vote(mock.localDates().get(),3,pollId,2,2));
-        voteList.add(new Vote(mock.localDates().get(),3,pollId,4,3));
-        voteList.add(new Vote(mock.localDates().get(),3,pollId,3,4));
-        voteList.add(new Vote(mock.localDates().get(),3,pollId,4,5));
-        voteList.add(new Vote(mock.localDates().get(),3,pollId,1,6));
-        voteList.add(new Vote(mock.localDates().get(),3,pollId,5,7));
-        voteList.add(new Vote(mock.localDates().get(),3,pollId,3,8));
-        voteList.add(new Vote(mock.localDates().get(),3,pollId,3,9));
-        voteList.add(new Vote(mock.localDates().get(),3,pollId,1,10));
-        return voteList;
+
+        List<Vote> currentVotes = new ArrayList<>();
+        Set<Integer> randomCandidateId;
+        int numberOfCandidates = this.ballots.stream().filter(b -> b.getId()==pollId).findFirst().get().getCandidates().size();
+        for (Elector e:this.electors) {
+            randomCandidateId = new LinkedHashSet<>();
+            while(randomCandidateId.size()<numberOfCandidates){
+                randomCandidateId.add(ints().range(1, numberOfCandidates+1).get());
+            }
+            MockNeat mock = MockNeat.threadLocal();
+            List<Integer> randomCandidatesIdList = randomCandidateId.stream().toList();
+            for (int i = 0; i < numberOfCandidates; i++) {
+                currentVotes.add(new Vote(mock.localDates().get(),i+1,pollId,randomCandidatesIdList.get(i),e.getId()));
+            }
+        }
+        return currentVotes;
     }
 
 
