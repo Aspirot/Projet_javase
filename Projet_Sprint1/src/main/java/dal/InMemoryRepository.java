@@ -68,6 +68,14 @@ public class InMemoryRepository {
                         intSeq().start(1),
                         generatorTo3
                         );
+        MockUnit<Vote> voteGenerator =
+                constructor(Vote.class).params(
+                        localDates(),
+                        intSeq().start(1).max(3),
+                        intSeq().start(1).max(3),
+                        generatorTo5,
+                        intSeq().start(1).max(10)
+                );
 
         this.forums = forumGenerator.list(3).get();
         this.posts = postGenerator.list(12).get();
@@ -94,18 +102,36 @@ public class InMemoryRepository {
     private List<Vote> voteGeneration(int pollId) {
         List<Vote> voteList = new ArrayList<>();
         MockNeat mock = MockNeat.threadLocal();
-        for (int i = 1; i <=3 ; i++) {
-            voteList.add(new Vote(mock.localDates().get(),i,pollId,mock.ints().range(1, 6).get(),1));
-            voteList.add(new Vote(mock.localDates().get(),i,pollId,mock.ints().range(1, 6).get(),2));
-            voteList.add(new Vote(mock.localDates().get(),i,pollId,mock.ints().range(1, 6).get(),3));
-            voteList.add(new Vote(mock.localDates().get(),i,pollId,mock.ints().range(1, 6).get(),4));
-            voteList.add(new Vote(mock.localDates().get(),i,pollId,mock.ints().range(1, 6).get(),5));
-            voteList.add(new Vote(mock.localDates().get(),i,pollId,mock.ints().range(1, 6).get(),6));
-            voteList.add(new Vote(mock.localDates().get(),i,pollId,mock.ints().range(1, 6).get(),7));
-            voteList.add(new Vote(mock.localDates().get(),i,pollId,mock.ints().range(1, 6).get(),8));
-            voteList.add(new Vote(mock.localDates().get(),i,pollId,mock.ints().range(1, 6).get(),9));
-            voteList.add(new Vote(mock.localDates().get(),i,pollId,mock.ints().range(1, 6).get(),10));
-        }
+        voteList.add(new Vote(mock.localDates().get(),1,pollId,2,1));
+        voteList.add(new Vote(mock.localDates().get(),1,pollId,1,2));
+        voteList.add(new Vote(mock.localDates().get(),1,pollId,3,3));
+        voteList.add(new Vote(mock.localDates().get(),1,pollId,1,4));
+        voteList.add(new Vote(mock.localDates().get(),1,pollId,2,5));
+        voteList.add(new Vote(mock.localDates().get(),1,pollId,5,6));
+        voteList.add(new Vote(mock.localDates().get(),1,pollId,4,7));
+        voteList.add(new Vote(mock.localDates().get(),1,pollId,1,8));
+        voteList.add(new Vote(mock.localDates().get(),1,pollId,2,9));
+        voteList.add(new Vote(mock.localDates().get(),1,pollId,5,10));
+        voteList.add(new Vote(mock.localDates().get(),2,pollId,5,1));
+        voteList.add(new Vote(mock.localDates().get(),2,pollId,4,2));
+        voteList.add(new Vote(mock.localDates().get(),2,pollId,5,3));
+        voteList.add(new Vote(mock.localDates().get(),2,pollId,5,4));
+        voteList.add(new Vote(mock.localDates().get(),2,pollId,3,5));
+        voteList.add(new Vote(mock.localDates().get(),2,pollId,4,6));
+        voteList.add(new Vote(mock.localDates().get(),2,pollId,2,7));
+        voteList.add(new Vote(mock.localDates().get(),2,pollId,5,8));
+        voteList.add(new Vote(mock.localDates().get(),2,pollId,5,9));
+        voteList.add(new Vote(mock.localDates().get(),2,pollId,2,10));
+        voteList.add(new Vote(mock.localDates().get(),3,pollId,1,1));
+        voteList.add(new Vote(mock.localDates().get(),3,pollId,2,2));
+        voteList.add(new Vote(mock.localDates().get(),3,pollId,4,3));
+        voteList.add(new Vote(mock.localDates().get(),3,pollId,3,4));
+        voteList.add(new Vote(mock.localDates().get(),3,pollId,4,5));
+        voteList.add(new Vote(mock.localDates().get(),3,pollId,1,6));
+        voteList.add(new Vote(mock.localDates().get(),3,pollId,5,7));
+        voteList.add(new Vote(mock.localDates().get(),3,pollId,3,8));
+        voteList.add(new Vote(mock.localDates().get(),3,pollId,3,9));
+        voteList.add(new Vote(mock.localDates().get(),3,pollId,1,10));
         return voteList;
     }
 

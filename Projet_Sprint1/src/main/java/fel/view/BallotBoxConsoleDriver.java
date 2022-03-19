@@ -27,8 +27,8 @@ public class BallotBoxConsoleDriver {
         voteDAO.getAllVotes().stream().forEach(System.out::println);
         voteDAO.deleteVote(10);
         voteDAO.changeVote(11,3);*/
-        voteDAO.getAllVotes().stream().forEach(System.out::println);
-        ballotDAO.fetchBallotById(1).stream().forEach(System.out::println);
+        //voteDAO.getAllVotes().stream().forEach(System.out::println);
+        //ballotDAO.fetchBallotById(1).stream().forEach(System.out::println);
 
         VoteController voteController = new VoteController(voteDAO);
         BallotController ballotController = new BallotController(ballotDAO);
