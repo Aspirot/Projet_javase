@@ -29,15 +29,15 @@ public class BallotController {
         return this.ballotDAO.fetchBallotById(ballotId).get().getElectors().size();
     }
 
-    public int findWinnerUsingLoneScan(int ballotId, VoteController voteController){
-        List<Vote> allRank1Votes = voteController.getVoteDAO().getAllVotes().stream().filter(v -> v.getPollId()==ballotId).toList().stream().filter(v -> v.getRank()==1).toList();
+    public int findWinnerUsingLoneScan(int ballotId){
+        List<Vote> allRank1Votes = VoteController.getVoteDAO().getAllVotes().stream().filter(v -> v.getPollId()==ballotId).toList().stream().filter(v -> v.getRank()==1).toList();
         int winner = -1;
         int winnerNumb = -1;
         for (Candidate candidate:ballotDAO.fetchBallotById(ballotId).get().getCandidates()) {
-            int currentCand = CandidateController.findNumberOfInFavorByCandidate(candidate.getId());
+            int currentCand = allRank1Votes.stream().filter(v -> v.getPollSubjectId()==candidate.getId()).toList().size();
             if(winnerNumb<currentCand){
                 winner=candidate.getId();
-                winnerNumb=currentCand;
+                winnerNumb = currentCand;
             }
         }
         return winner;

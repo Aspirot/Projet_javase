@@ -34,5 +34,7 @@ public class BallotBoxConsoleDriver {
         BallotController ballotController = new BallotController(ballotDAO);
         CandidateController candidateController = new CandidateController(candidateDAO);
         ElectorController electorController = new ElectorController(electorDAO);
+
+        System.out.println(ballotController.findWinnerUsingLoneScan(2));
     }
 }
