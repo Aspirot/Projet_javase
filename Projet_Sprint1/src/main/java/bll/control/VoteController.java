@@ -10,7 +10,7 @@ import java.util.Date;
 public class VoteController {
     private IVoteDAO voteDAO;
 
-    public VoteController(VoteDAO voteDAO){
+    public VoteController(IVoteDAO voteDAO){
         this.voteDAO = voteDAO;
     }
 

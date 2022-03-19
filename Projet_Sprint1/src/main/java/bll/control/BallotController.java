@@ -11,12 +11,12 @@ import java.util.Date;
 public class BallotController {
     private IBallotDAO ballotDAO;
 
-    public BallotController(BallotDAO ballotDAO){
+    public BallotController(IBallotDAO ballotDAO){
         this.ballotDAO = ballotDAO;
     }
 
-    public void createBallot(String title, LocalDate start, LocalDate end, Boolean isPublic, Boolean isAnonymous, Forum forum, int ownerId){
-        Ballot ballot = new Ballot(title,start,end,isPublic,isAnonymous,forum,ownerId);
+    public void createBallot(String title, LocalDate start, LocalDate end, Boolean isPublic, Boolean isAnonymous, int forumid, int ownerId){
+        Ballot ballot = new Ballot(title,start,end,isPublic,isAnonymous,forumid,ownerId);
         this.ballotDAO.addBallot(ballot);
     }
 

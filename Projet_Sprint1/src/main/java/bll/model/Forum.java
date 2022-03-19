@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Forum {
-    private static int AUTO_INCREMENT_ID = 0;
+    private static int AUTO_INCREMENT_ID = 1;
 
     private int id;
     private String title;
@@ -38,5 +38,14 @@ public class Forum {
 
     public void setCreatedOn(LocalDate createdOn) {
         this.createdOn = createdOn;
+    }
+
+    @Override
+    public String toString() {
+        return "Forum{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", createdOn=" + createdOn +
+                '}';
     }
 }

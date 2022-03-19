@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Ballot {
-    private static int AUTO_INCREMENT_ID = 0;
+    private static int AUTO_INCREMENT_ID = 1;
 
     private int id;
     private String title;
@@ -114,5 +114,21 @@ public class Ballot {
 
     public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
+    }
+
+    @Override
+    public String toString() {
+        return "Ballot{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                ", isPublic=" + isPublic +
+                ", isAnonymous=" + isAnonymous +
+                //", candidates=" + candidates +
+                //", electors=" + electors +
+                ", forumid=" + forumid +
+                ", ownerId=" + ownerId +
+                '}';
     }
 }

@@ -3,7 +3,7 @@ package bll.model;
 import java.time.LocalDate;
 
 public class Vote {
-    private static int AUTO_INCREMENT_ID = 0;
+    private static int AUTO_INCREMENT_ID = 1;
 
     private int id;
     private LocalDate when;
@@ -59,5 +59,17 @@ public class Vote {
 
     public int getElectorId() {
         return electorId;
+    }
+
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "id=" + id +
+                ", when=" + when +
+                ", rank=" + rank +
+                ", pollId=" + pollId +
+                ", pollSubjectId=" + pollSubjectId +
+                ", electorId=" + electorId +
+                '}';
     }
 }

@@ -1,7 +1,7 @@
 package bll.model;
 
 public class Elector {
-    private static int AUTO_INCREMENT_ID = 0;
+    private static int AUTO_INCREMENT_ID = 1;
 
     private int id;
     private String login;
@@ -55,5 +55,16 @@ public class Elector {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Elector{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", weight=" + weight +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

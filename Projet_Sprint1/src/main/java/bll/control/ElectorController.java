@@ -10,7 +10,7 @@ import java.util.List;
 public class ElectorController {
     private IElectorDAO electorDAO;
 
-    public ElectorController(ElectorDAO electorDAO){
+    public ElectorController(IElectorDAO electorDAO){
         this.electorDAO = electorDAO;
     }
 

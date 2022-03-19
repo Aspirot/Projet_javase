@@ -1,17 +1,12 @@
 package dal;
 
 import bll.model.*;
-import net.andreinc.mockneat.MockNeat;
 import net.andreinc.mockneat.abstraction.MockUnit;
 import net.andreinc.mockneat.abstraction.MockUnitInt;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import static net.andreinc.mockneat.unit.objects.Constructor.constructor;
-import static net.andreinc.mockneat.unit.objects.Filler.filler;
-import static net.andreinc.mockneat.unit.seq.IntSeq.intSeq;
 import static net.andreinc.mockneat.unit.text.Strings.strings;
 import static net.andreinc.mockneat.unit.time.LocalDates.localDates;
 import static net.andreinc.mockneat.unit.types.Bools.bools;
@@ -31,9 +26,9 @@ public class InMemoryRepository {
     private List<Forum> forums;
 
     public InMemoryRepository(){
-        MockUnitInt generatorTo3 = ints().range(1, 3);
-        MockUnitInt generatorTo5 = ints().range(1, 5);
-        MockUnitInt generatorTo10 = ints().range(1, 10);
+        MockUnitInt generatorTo3 = ints().range(1, 4);
+        MockUnitInt generatorTo5 = ints().range(1, 6);
+        MockUnitInt generatorTo10 = ints().range(1, 11);
         MockUnit<Forum> forumGenerator =
                 constructor(Forum.class).params(
                         strings(),

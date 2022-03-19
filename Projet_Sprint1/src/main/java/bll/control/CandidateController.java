@@ -9,7 +9,7 @@ import dal.ICandidateDAO;
 public class CandidateController {
     private ICandidateDAO candidateDAO;
 
-    public CandidateController(CandidateDAO candidateDAO){
+    public CandidateController(ICandidateDAO candidateDAO){
         this.candidateDAO = candidateDAO;
     }
 
