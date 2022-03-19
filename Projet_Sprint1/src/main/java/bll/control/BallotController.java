@@ -5,7 +5,9 @@ import bll.model.Candidate;
 import bll.model.Forum;
 import bll.model.Vote;
 import dal.BallotDAO;
+import dal.CandidateDAO;
 import dal.IBallotDAO;
+import dal.VoteDAO;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -43,8 +45,31 @@ public class BallotController {
         return winner;
     }
 
-    public int findWinnerUsingPolyScan(int ballotId){
-        
+    public int findWinnerUsingPolyScan(int ballotId, VoteController voteController){
+        int losing=0;
+        int turn= 1;
+        Candidate loser;
+        List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
+        for(Candidate canditate:polylist){
+
+            int currentCandidateVotes =0;
+            for(Vote vote: voteController.getVoteDAO().getAllVotes().stream().filter(v->v.getRank()==turn).toList())
+            {
+                if(canditate.getId()==vote.getPollSubjectId())
+                {
+                    currentCandidateVotes++;
+                }
+            }
+            if(losing>=currentCandidateVotes)
+            {
+                losing=currentCandidateVotes;
+                Candidate currentloser=canditate.
+
+            }
+            loser=
+            turn++;
+            polylist.remove(loser);
+        }
     }
 
     public IBallotDAO getBallotDAO() {
