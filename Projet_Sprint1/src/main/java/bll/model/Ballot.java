@@ -120,14 +120,14 @@ public class Ballot {
     public String toString() {
         return "Ballot{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", start=" + start +
+                ",\n title='" + title + '\'' +
+                ",\n start=" + start +
                 ", end=" + end +
-                ", isPublic=" + isPublic +
+                ",\n isPublic=" + isPublic +
                 ", isAnonymous=" + isAnonymous +
-                ", candidates=" + candidates +
-                ", electors=" + electors +
-                ", forumId=" + forumId +
+                ",\n candidates=" + candidates +
+                ",\n electors=" + electors +
+                ",\n forumId=" + forumId +
                 ", ownerId=" + ownerId +
                 '}';
     }

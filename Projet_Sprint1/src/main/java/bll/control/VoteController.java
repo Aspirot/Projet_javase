@@ -2,10 +2,8 @@ package bll.control;
 
 import bll.model.Vote;
 import dal.IVoteDAO;
-import dal.VoteDAO;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class VoteController {
     private static IVoteDAO voteDAO;
