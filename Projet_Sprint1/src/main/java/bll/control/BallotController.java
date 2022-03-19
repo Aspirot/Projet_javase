@@ -49,6 +49,9 @@ public class BallotController {
         Candidate loser = null;
         List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
         removeLastPlace(polylist, voteController, turn, losing, loser);
+
+
+        return losing;
     }
 
     public static IBallotDAO getBallotDAO() {
