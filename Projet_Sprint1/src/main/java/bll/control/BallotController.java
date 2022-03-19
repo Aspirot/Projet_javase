@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 public class BallotController {
-    private IBallotDAO ballotDAO;
+    private static IBallotDAO ballotDAO;
 
     public BallotController(IBallotDAO ballotDAO){
         this.ballotDAO = ballotDAO;
@@ -32,15 +32,13 @@ public class BallotController {
     public int findWinnerUsingLoneScan(int ballotId, VoteController voteController){
         List<Vote> allRank1Votes = voteController.getVoteDAO().getAllVotes().stream().filter(v -> v.getPollId()==ballotId).toList().stream().filter(v -> v.getRank()==1).toList();
         int winner = -1;
+        int winnerNumb = -1;
         for (Candidate candidate:ballotDAO.fetchBallotById(ballotId).get().getCandidates()) {
-            int currentCandidateVotes = 0;
-            for (Vote vote:allRank1Votes) {
-                if(candidate.getId()==vote.getPollSubjectId()){
-                    currentCandidateVotes++;
-                }
+            int currentCand = CandidateController.findNumberOfInFavorByCandidate(candidate.getId());
+            if(winnerNumb<currentCand){
+                winner=candidate.getId();
+                winnerNumb=currentCand;
             }
-            if(winner<currentCandidateVotes)
-                winner = currentCandidateVotes;
         }
         return winner;
     }
@@ -72,7 +70,7 @@ public class BallotController {
         }
     }
 
-    public IBallotDAO getBallotDAO() {
+    public static IBallotDAO getBallotDAO() {
         return ballotDAO;
     }
 }

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class VoteController {
-    private IVoteDAO voteDAO;
+    private static IVoteDAO voteDAO;
 
     public VoteController(IVoteDAO voteDAO){
         this.voteDAO = voteDAO;
@@ -16,10 +16,10 @@ public class VoteController {
 
     public void createVote(LocalDate when, int rank, int pollId, int pollSubjectId, int electorId){
         Vote newVote = new Vote(when,rank,pollId,pollSubjectId,electorId);
-        this.voteDAO.addVote(newVote);
+        voteDAO.addVote(newVote);
     }
 
-    public IVoteDAO getVoteDAO() {
-        return this.voteDAO;
+    public static IVoteDAO getVoteDAO() {
+        return voteDAO;
     }
 }

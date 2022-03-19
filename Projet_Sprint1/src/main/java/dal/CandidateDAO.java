@@ -4,6 +4,7 @@ import bll.model.Candidate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CandidateDAO implements ICandidateDAO{
     private List<Candidate> candidates;
@@ -21,6 +22,11 @@ public class CandidateDAO implements ICandidateDAO{
     @Override
     public List<Candidate> getAllCanditates() {
         return this.candidates;
+    }
+
+    @Override
+    public Optional<Candidate> fetchCandidateById(int candidateId) {
+        return this.candidates.stream().filter(c -> c.getId()==candidateId).findFirst();
     }
 
     @Override

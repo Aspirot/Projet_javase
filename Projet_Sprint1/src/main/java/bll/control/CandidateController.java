@@ -18,7 +18,7 @@ public class CandidateController {
         ballotController.getBallotDAO().fetchBallotById(pollId).get().addCandidate(candidateDAO.getAllCanditates().stream().filter(c -> c.getId()==candidateId).findFirst().get());
     }
 
-    public int findNumberOfInFavorByCandidate(int candidateId, VoteController voteController){
-        return voteController.getVoteDAO().getAllVotes().stream().filter(v -> v.getPollSubjectId()==candidateId).toList().size();
+    public static int findNumberOfInFavorByCandidate(int candidateId){
+        return VoteController.getVoteDAO().getAllVotes().stream().filter(v -> v.getPollSubjectId()==candidateId).toList().size();
     }
 }
