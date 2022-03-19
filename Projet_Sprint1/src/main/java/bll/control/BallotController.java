@@ -46,12 +46,21 @@ public class BallotController {
     public int findWinnerUsingPolyScan(int ballotId, VoteController voteController){
         int losing=0;
         int turn= 1;
-        Candidate loser;
+        Candidate loser = null;
         List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
+        removeLastPlace(polylist, voteController, turn, losing, loser);
+    }
+
+    public static IBallotDAO getBallotDAO() {
+        return ballotDAO;
+    }
+
+    public void removeLastPlace(List<Candidate> polylist, VoteController voteController, int turn, int losing, Candidate loser){
         for(Candidate canditate:polylist){
 
             int currentCandidateVotes =0;
-            for(Vote vote: voteController.getVoteDAO().getAllVotes().stream().filter(v->v.getRank()==turn).toList())
+            int finalTurn = turn;
+            for(Vote vote: voteController.getVoteDAO().getAllVotes().stream().filter(v->v.getRank()== finalTurn).toList())
             {
                 if(canditate.getId()==vote.getPollSubjectId())
                 {
@@ -61,16 +70,11 @@ public class BallotController {
             if(losing>=currentCandidateVotes)
             {
                 losing=currentCandidateVotes;
-                Candidate currentloser=canditate.
+                loser=canditate;
 
             }
-            loser=
             turn++;
             polylist.remove(loser);
         }
-    }
-
-    public static IBallotDAO getBallotDAO() {
-        return ballotDAO;
     }
 }
