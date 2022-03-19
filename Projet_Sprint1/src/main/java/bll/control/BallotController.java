@@ -29,7 +29,7 @@ public class BallotController {
     }
 
     public int findWinnerUsingPolyScan(int ballotId){
-        return 1;
+        
     }
 
     public IBallotDAO getBallotDAO() {
