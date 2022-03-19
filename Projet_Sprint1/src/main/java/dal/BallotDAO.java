@@ -30,6 +30,6 @@ public class BallotDAO implements IBallotDAO{
 
     @Override
     public void deleteBallot(int ballotId) {
-        this.ballots.remove(this.ballots.stream().filter(b -> b.getId()==ballotId).findFirst());
+        this.ballots.remove(this.ballots.stream().filter(b -> b.getId()==ballotId).findFirst().get());
     }
 }

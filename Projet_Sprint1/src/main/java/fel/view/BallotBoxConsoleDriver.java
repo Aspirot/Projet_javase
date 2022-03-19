@@ -4,7 +4,10 @@ import bll.control.BallotController;
 import bll.control.CandidateController;
 import bll.control.ElectorController;
 import bll.control.VoteController;
+import bll.model.Vote;
 import dal.*;
+
+import java.time.LocalDate;
 
 public class BallotBoxConsoleDriver {
     public static void main(String[] args) {
@@ -19,6 +22,11 @@ public class BallotBoxConsoleDriver {
         IElectorDAO electorDAO = new ElectorDAO(memoryRepository);
 
         System.out.println(electorDAO.fetchElectorById(3).get().toString());
+        /* Testing DAO CRUD methods
+        voteDAO.addVote(new Vote(LocalDate.now(),1,3,4,10));
+        voteDAO.getAllVotes().stream().forEach(System.out::println);
+        voteDAO.deleteVote(10);
+        voteDAO.changeVote(11,3);*/
         voteDAO.getAllVotes().stream().forEach(System.out::println);
 
         VoteController voteController = new VoteController(voteDAO);
