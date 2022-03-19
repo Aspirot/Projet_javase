@@ -1,9 +1,11 @@
 package dal;
 
+import bll.model.Elector;
 import bll.model.Vote;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class VoteDAO implements IVoteDAO{
     private List<Vote> votes;
@@ -24,9 +26,10 @@ public class VoteDAO implements IVoteDAO{
     }
 
     @Override
-    public void changeVote(int voteId, int newPollSubjectId) {
-        this.votes.stream().filter(v -> v.getId()==voteId).findFirst().get().setPollSubjectId(newPollSubjectId);
+    public Optional<Vote> fetchElectorById(int voteId) {
+        return this.votes.stream().filter(v -> v.getId()==voteId).findFirst();
     }
+
 
     @Override
     public void deleteVote(int voteId) {
