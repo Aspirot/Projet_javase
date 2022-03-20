@@ -91,15 +91,54 @@ public class BallotController {
         List<Integer> candidates = ballotDAO.fetchBallotById(ballotId).get().getCandidates().stream().map(c -> c.getId()).toList();
         for (int i = 0; i < numbElectors; i++) {
 
-        }*/
+        }
 
 
         int losing=0;
         Candidate loser = null;
         List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
-        removeLastPlace(polylist, losing, loser);
+        removeLastPlace(polylist, losing, loser);*/
 
 
+        // ballot x -> elector -> votes => candidatevote+sys
+        //for elector[i] votes in ballot x -> if condition point system -> return winner
+        //if candidate id == votepollsubject candidate ++;
+        int numberOfOptions= 0;
+        List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
+        int winnerPoint= 1000000000;
+        int winner=-1;
+        for(int i=0; i>polylist.size();i++)
+        {
+            numberOfOptions++;
+        }
+        for (Candidate c : polylist)
+        {
+
+            int currentCandidatePoints = 0;
+            for(Vote vote: VoteController.getVoteDAO().getAllVotes().stream().toList())
+            {
+                if(c.getId()==vote.getPollSubjectId())
+                {
+                    //manque une façon de donner le nombre de point=nombre options quand rank=1 et point descend quand rank monte
+                    for(int r=1; r>numberOfOptions;r++)
+                    {
+
+                        if(vote.getRank()==r)
+                        {
+                         currentCandidatePoints=currentCandidatePoints+r;
+                        }
+                    }
+                }
+            }
+            //en ordre descendant, c scuff, see line 108 problem steems from line 122
+            if(winnerPoint>currentCandidatePoints)
+            {
+                winnerPoint=currentCandidatePoints;
+                winner=c.getId();
+            }
+        }
+
+        return winner;
     }
 
     public static IBallotDAO getBallotDAO() {
