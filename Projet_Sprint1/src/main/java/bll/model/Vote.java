@@ -2,7 +2,7 @@ package bll.model;
 
 import java.time.LocalDate;
 
-public class Vote {
+public class Vote implements Comparable<Vote>{
     private static int AUTO_INCREMENT_ID = 1;
 
     private int id;
@@ -79,5 +79,10 @@ public class Vote {
                 ", pollSubjectId=" + pollSubjectId +
                 ", electorId=" + electorId +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Vote o) {
+        return Integer.compare(this.getRank(),o.getRank());
     }
 }

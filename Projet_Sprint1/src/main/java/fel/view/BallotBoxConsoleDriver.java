@@ -58,8 +58,8 @@ public class BallotBoxConsoleDriver {
         System.out.println("Winner of ballot 2 with Lone-Scan is : " + ballotController.findWinnerUsingLoneScan(2));
         System.out.println("Winner of ballot 3 with Lone-Scan is : " + ballotController.findWinnerUsingLoneScan(3));
         VoteController.getVoteDAO().getAllVotes().stream().forEach(System.out::println);
-        System.out.println("Winner of ballot 1 with Poly-Scan is : ");
-        System.out.println("Winner of ballot 2 with Poly-Scan is : " + ballotController.findWinnerUsingPolyScan(2));
+        System.out.println("Winner of ballot 1 with Poly-Scan is : " + ballotController.findWinnerUsingPolyScan(1));
+        System.out.println("Winner of ballot 2 with Poly-Scan is : ");
         System.out.println("Winner of ballot 3 with Poly-Scan is : ");
 
 

@@ -26,6 +26,11 @@ public class VoteDAO implements IVoteDAO{
     }
 
     @Override
+    public List<Vote> getAllVotesForBallot(int pollId) {
+        return this.votes.stream().filter(v -> v.getPollId()==pollId).toList();
+    }
+
+    @Override
     public Optional<Vote> fetchVoteById(int voteId) {
         return this.votes.stream().filter(v -> v.getId()==voteId).findFirst();
     }

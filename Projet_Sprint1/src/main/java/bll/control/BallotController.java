@@ -1,7 +1,13 @@
 package bll.control;
 
-import bll.model.*;
-import dal.*;
+import bll.model.Ballot;
+import bll.model.Candidate;
+import bll.model.Forum;
+import bll.model.Vote;
+import dal.BallotDAO;
+import dal.CandidateDAO;
+import dal.IBallotDAO;
+import dal.VoteDAO;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -85,17 +91,13 @@ public class BallotController {
         List<Integer> candidates = ballotDAO.fetchBallotById(ballotId).get().getCandidates().stream().map(c -> c.getId()).toList();
         for (int i = 0; i < numbElectors; i++) {
 
-        }
+        }*/
 
 
         int losing=0;
         Candidate loser = null;
         List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
-        removeLastPlace(polylist, losing, loser);*/
-
-
-        //for elector[i] votes in ballot x ->point system if conditions -> return winner.
-        for(ballotDAO.fetchBallotById(ballotId).get().get)
+        removeLastPlace(polylist, losing, loser);
 
 
     }
