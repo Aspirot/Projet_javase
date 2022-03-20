@@ -1,13 +1,7 @@
 package bll.control;
 
-import bll.model.Ballot;
-import bll.model.Candidate;
-import bll.model.Forum;
-import bll.model.Vote;
-import dal.BallotDAO;
-import dal.CandidateDAO;
-import dal.IBallotDAO;
-import dal.VoteDAO;
+import bll.model.*;
+import dal.*;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -85,7 +79,7 @@ public class BallotController {
                 }
             }
 
-        }*/
+        }
 
         int numbElectors = ballotDAO.fetchBallotById(ballotId).get().getElectors().size();
         List<Integer> candidates = ballotDAO.fetchBallotById(ballotId).get().getCandidates().stream().map(c -> c.getId()).toList();
@@ -94,28 +88,28 @@ public class BallotController {
         }
 
 
-
-
-
         int losing=0;
-        int turn= 1;
         Candidate loser = null;
         List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
-        removeLastPlace(polylist, turn, losing, loser);
+        removeLastPlace(polylist, losing, loser);*/
 
-        return losing;
+
+        //for elector[i] votes in ballot x ->point system if conditions -> return winner.
+        for(ballotDAO.fetchBallotById(ballotId).get().get)
+
+
     }
 
     public static IBallotDAO getBallotDAO() {
         return ballotDAO;
     }
 
-    public void removeLastPlace(List<Candidate> polylist, int turn, int losing, Candidate loser){
+    /*public void removeLastPlace(List<Candidate> polylist, int losing, Candidate loser){
+        Candidate winner;
         for(Candidate candidate:polylist){
 
             int currentCandidateVotes =0;
-            int finalTurn = turn;
-            for(Vote vote: VoteController.getVoteDAO().getAllVotes().stream().filter(v->v.getRank()== finalTurn).toList())
+            for(Vote vote: VoteController.getVoteDAO().getAllVotes().stream().filter(v->v.getRank()== 1).toList())
             {
                 if(candidate.getId()==vote.getPollSubjectId())
                 {
@@ -126,11 +120,19 @@ public class BallotController {
             {
                 losing=currentCandidateVotes;
                 loser=candidate;
-
             }
-            turn++;
+
+            if(currentCandidateVotes>=VoteController.getVoteDAO().getAllVotes().size()/2)
+            {
+                winner = candidate;
+            }
+
+
+
             polylist.remove(loser);
         }
-    }
+
+        return winner;
+    }*/
 
 }
