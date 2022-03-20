@@ -93,21 +93,16 @@ public class BallotController {
 
         }
 
-
         int losing=0;
         Candidate loser = null;
         List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
         removeLastPlace(polylist, losing, loser);*/
 
-
-        // ballot x -> elector -> votes => candidatevote+sys
-        //for elector[i] votes in ballot x -> if condition point system -> return winner
-        //if candidate id == votepollsubject candidate ++;
         int numberOfOptions= 0;
         List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
         int winnerPoint= 1000000000;
         int winner=-1;
-        for(int i=0; i>polylist.size();i++)
+        for(int i=0; i<polylist.size();i++)
         {
             numberOfOptions++;
         }
@@ -119,8 +114,8 @@ public class BallotController {
             {
                 if(c.getId()==vote.getPollSubjectId())
                 {
-                    //manque une façon de donner le nombre de point=nombre options quand rank=1 et point descend quand rank monte
-                    for(int r=1; r>numberOfOptions;r++)
+                    //manque une façon de donner le nombre de point=nombre options, quand rank=1 points = nomber option et point descend quand rank monte
+                    for(int r=1; r<numberOfOptions;r++)
                     {
 
                         if(vote.getRank()==r)
@@ -130,7 +125,7 @@ public class BallotController {
                     }
                 }
             }
-            //en ordre descendant, c scuff, see line 108 problem steems from line 122
+            //en ordre descendant, c scuff, see line 103, problem steems from line 118
             if(winnerPoint>currentCandidatePoints)
             {
                 winnerPoint=currentCandidatePoints;
