@@ -10,8 +10,7 @@ import dal.IBallotDAO;
 import dal.VoteDAO;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class BallotController {
     private static IBallotDAO ballotDAO;
@@ -45,7 +44,54 @@ public class BallotController {
 
     public int findWinnerUsingPolyScan(int ballotId){
 
+        /*
+        Ballot ballot = ballotDAO.fetchBallotById(ballotId).get();
+        int winner = -1;
+        int size = VoteController.getVoteDAO().getAllVotes().size();
 
+        int lowestValue = 100;
+        int lowestId = -1;
+
+        Map<Integer,Integer> currentCandidate_Votes = new HashMap<>();
+        Map<Integer,Integer> losingElectorId_Rank = new HashMap<>();
+
+        for (Candidate candidate:ballot.getCandidates()) {
+            currentCandidate_Votes.put(candidate.getId(),CandidateController.findNumberOfInFavorByCandidate(candidate.getId(),ballotId,1));
+        }
+        while (winner==-1||currentCandidate_Votes.size()>1){
+
+            for (var kv: currentCandidate_Votes.entrySet()){
+                if(size/2<=kv.getValue()){
+                    winner=kv.getKey();
+                }
+            }
+
+            for (var kv: currentCandidate_Votes.entrySet()){
+                if(kv.getValue()<lowestValue){
+                    lowestValue=kv.getValue();
+                    lowestId=kv.getKey();
+                }
+            }
+            lowestValue = -1;
+            currentCandidate_Votes.remove(lowestId);
+
+            losingElectorId_Rank.put(VoteController.getVoteDAO().fetchVoteByCandidateId_PollId_Rank(lowestId-1,ballotId,1).get().getElectorId(),2);
+
+            for (var kv:losingElectorId_Rank.entrySet()) {
+                for (var kv2: currentCandidate_Votes.entrySet()){
+                    //get vote id to fetch elector
+                    if(kv2.getKey()==VoteController.getVoteDAO().fetchVoteByElectorId_PollId_Rank(kv.getKey(),ballotId,kv.getValue()).get().getPollSubjectId())
+                        kv2.setValue(kv2.getValue()+1);
+                }
+            }
+
+        }*/
+
+        int numbElectors = ballotDAO.fetchBallotById(ballotId).get().getElectors().size();
+        List<Integer> candidates = ballotDAO.fetchBallotById(ballotId).get().getCandidates().stream().map(c -> c.getId()).toList();
+        for (int i = 0; i < numbElectors; i++) {
+
+        }
 
 
 
@@ -57,7 +103,6 @@ public class BallotController {
         List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
         removeLastPlace(polylist, turn, losing, loser);
 
-
         return losing;
     }
 
@@ -66,13 +111,13 @@ public class BallotController {
     }
 
     public void removeLastPlace(List<Candidate> polylist, int turn, int losing, Candidate loser){
-        for(Candidate canditate:polylist){
+        for(Candidate candidate:polylist){
 
             int currentCandidateVotes =0;
             int finalTurn = turn;
             for(Vote vote: VoteController.getVoteDAO().getAllVotes().stream().filter(v->v.getRank()== finalTurn).toList())
             {
-                if(canditate.getId()==vote.getPollSubjectId())
+                if(candidate.getId()==vote.getPollSubjectId())
                 {
                     currentCandidateVotes++;
                 }
@@ -80,11 +125,12 @@ public class BallotController {
             if(losing>=currentCandidateVotes)
             {
                 losing=currentCandidateVotes;
-                loser=canditate;
+                loser=candidate;
 
             }
             turn++;
             polylist.remove(loser);
         }
     }
+
 }

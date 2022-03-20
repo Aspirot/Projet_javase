@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface IVoteDAO {
     void addVote(Vote vote);
     List<Vote> getAllVotes();
-    Optional<Vote> fetchElectorById(int voteId);
+    Optional<Vote> fetchVoteById(int voteId);
+    Optional<Vote> fetchVoteByCandidateId_PollId_Rank(int candidateId,int pollId,int rank);
+    Optional<Vote> fetchVoteByElectorId_PollId_Rank(int electorId,int pollId,int rank);
     void deleteVote(int voteId);
 }
