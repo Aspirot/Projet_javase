@@ -1,9 +1,6 @@
 package bll.control;
 
-import bll.model.Ballot;
-import bll.model.Candidate;
-import bll.model.Forum;
-import bll.model.Vote;
+import bll.model.*;
 import dal.BallotDAO;
 import dal.CandidateDAO;
 import dal.IBallotDAO;
@@ -44,10 +41,10 @@ public class BallotController {
 
     public int findWinnerUsingPolyScan(int ballotId){
 
-        /*
+
         Ballot ballot = ballotDAO.fetchBallotById(ballotId).get();
         int winner = -1;
-        int size = VoteController.getVoteDAO().getAllVotes().size();
+        int size = VoteController.getVoteDAO().getAllVotesForBallot(ballotId).size();
 
         int lowestValue = 100;
         int lowestId = -1;
@@ -61,7 +58,7 @@ public class BallotController {
         while (winner==-1||currentCandidate_Votes.size()>1){
 
             for (var kv: currentCandidate_Votes.entrySet()){
-                if(size/2<=kv.getValue()){
+                if(kv.getValue()>size/2){
                     winner=kv.getKey();
                 }
             }
@@ -85,52 +82,85 @@ public class BallotController {
                 }
             }
 
-        }*/
+        }
 
+        /*
         int numbElectors = ballotDAO.fetchBallotById(ballotId).get().getElectors().size();
-        List<Integer> candidates = ballotDAO.fetchBallotById(ballotId).get().getCandidates().stream().map(c -> c.getId()).toList();
-        for (int i = 0; i < numbElectors; i++) {
-
+        int numbVotes = VoteController.getVoteDAO().getAllVotesForBallot(ballotId).size();
+        //map of <candidateId,numberOfOccurences>
+        Map<Integer,Integer> candidates = new HashMap<>();
+        for (int id:ballotDAO.fetchBallotById(ballotId).get().getCandidates().stream().map(c -> c.getId()).toList()) {
+            candidates.put(id,0);
         }
 
 
+        int winner = 0;
+        int loser = 0;
+        int winnerCount = 0;
+        int loserCount = numbVotes+1;
+        int turn = 1;
+
+        //initialises candidates values
+        for (int i = 0; i < numbElectors; i++) {
+            if(turn==1) {
+                int currentElectorId = ballotDAO.fetchBallotById(ballotId).get().getElectors().get(i).getId();
+                int currentChoice = VoteController.getVoteDAO().fetchVoteByElectorId_PollId_Rank(currentElectorId, ballotId, 1).get().getPollSubjectId();
+                for (var kv : candidates.entrySet()) {
+                    if (kv.getKey() == currentChoice)
+                        kv.setValue(kv.getValue() + 1);
+                }
+            }
+        }*/
 
 
 
-        int losing=0;
-        int turn= 1;
-        Candidate loser = null;
-        List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
-        removeLastPlace(polylist, turn, losing, loser);
 
-        return losing;
+        //ElectorId<rank,pollsubjectId>
+        /*
+        Map<Elector,List<Vote>> electorId_rank_candidateId = new HashMap<>();
+        for (Elector e:ballotDAO.fetchBallotById(ballotId).get().getElectors()) {
+            electorId_rank_candidateId.put(e,VoteController.getVoteDAO().getAllVotesForBallot(ballotId).stream().filter(el -> el.getElectorId()==e.getId()).toList());
+        }
+        electorId_rank_candidateId.values().stream().sorted();
+
+        Candidate top = null;
+        Candidate bottom = null;
+        int topCounter = 0;
+        int bottomCounter = 100;
+        while (top==null){
+            for (var kv:electorId_rank_candidateId.entrySet()) {
+                if(kv.getValue().stream().findFirst().get().get<bottomCounter)
+            }
+        }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        return winner;
     }
 
     public static IBallotDAO getBallotDAO() {
         return ballotDAO;
     }
-
-    public void removeLastPlace(List<Candidate> polylist, int turn, int losing, Candidate loser){
-        for(Candidate candidate:polylist){
-
-            int currentCandidateVotes =0;
-            int finalTurn = turn;
-            for(Vote vote: VoteController.getVoteDAO().getAllVotes().stream().filter(v->v.getRank()== finalTurn).toList())
-            {
-                if(candidate.getId()==vote.getPollSubjectId())
-                {
-                    currentCandidateVotes++;
-                }
-            }
-            if(losing>=currentCandidateVotes)
-            {
-                losing=currentCandidateVotes;
-                loser=candidate;
-
-            }
-            turn++;
-            polylist.remove(loser);
-        }
-    }
-
 }
