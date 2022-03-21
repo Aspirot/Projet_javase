@@ -29,7 +29,6 @@ public class InMemoryRepository {
 
     public InMemoryRepository(){
         MockUnitInt generatorTo3 = ints().range(1, 4);
-        MockUnitInt generatorTo5 = ints().range(1, 6);
         MockUnitInt generatorTo10 = ints().range(1, 11);
 
         MockUnit<Forum> forumGenerator =
@@ -67,14 +66,6 @@ public class InMemoryRepository {
                         intSeq().start(1),
                         generatorTo3
                         );
-        MockUnit<Vote> voteGenerator =
-                constructor(Vote.class).params(
-                        localDates(),
-                        intSeq().start(1).max(3),
-                        intSeq().start(1).max(3),
-                        generatorTo5,
-                        intSeq().start(1).max(10)
-                );
 
         this.forums = forumGenerator.list(3).get();
         this.posts = postGenerator.list(12).get();
@@ -129,15 +120,13 @@ public class InMemoryRepository {
     }
 
     private List<Vote> voteGeneration(int pollId) {
-
         List<Vote> currentVotes = new ArrayList<>();
         Set<Integer> randomCandidateId;
         int numberOfCandidates = this.ballots.stream().filter(b -> b.getId()==pollId).findFirst().get().getCandidates().size();
         for (Elector e:this.electors) {
             randomCandidateId = new LinkedHashSet<>();
-            while(randomCandidateId.size()<numberOfCandidates){
+            while(randomCandidateId.size()<numberOfCandidates)
                 randomCandidateId.add(ints().range(1, numberOfCandidates+1).get());
-            }
             MockNeat mock = MockNeat.threadLocal();
             List<Integer> randomCandidatesIdList = randomCandidateId.stream().toList();
             for (int i = 0; i < numberOfCandidates; i++) {

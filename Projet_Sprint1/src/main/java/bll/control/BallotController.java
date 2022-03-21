@@ -100,12 +100,9 @@ public class BallotController {
 
         int numberOfOptions= 0;
         List<Candidate> polylist = ballotDAO.fetchBallotById(ballotId).get().getCandidates();
-        int winnerPoint= 1000000000;
+        int winnerPoint= 0;
         int winner=-1;
-        for(int i=0; i<polylist.size();i++)
-        {
-            numberOfOptions++;
-        }
+        numberOfOptions = polylist.size();
         for (Candidate c : polylist)
         {
 
@@ -115,10 +112,9 @@ public class BallotController {
                 if(c.getId()==vote.getPollSubjectId())
                 {
                     //manque une façon de donner le nombre de point=nombre options, quand rank=1 points = nomber option et point descend quand rank monte
-                    for(int r=1; r<numberOfOptions;r++)
+                    for(int p=1,r=numberOfOptions; r>0;r--,p++)
                     {
-
-                        if(vote.getRank()==r)
+                        if(vote.getRank()==p)
                         {
                          currentCandidatePoints=currentCandidatePoints+r;
                         }
@@ -126,7 +122,7 @@ public class BallotController {
                 }
             }
             //en ordre descendant, c scuff, see line 103, problem steems from line 118
-            if(winnerPoint>currentCandidatePoints)
+            if(currentCandidatePoints>winnerPoint)
             {
                 winnerPoint=currentCandidatePoints;
                 winner=c.getId();
