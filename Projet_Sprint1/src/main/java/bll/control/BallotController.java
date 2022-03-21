@@ -103,11 +103,12 @@ public class BallotController {
         int winnerPoint= 0;
         int winner=-1;
         numberOfOptions = polylist.size();
+        int currentCandidatePoints = 0;
         for (Candidate c : polylist)
         {
 
-            int currentCandidatePoints = 0;
-            for(Vote vote: VoteController.getVoteDAO().getAllVotes().stream().toList())
+            currentCandidatePoints = 0;
+            for(Vote vote: VoteController.getVoteDAO().getAllVotesForBallot(ballotId).stream().toList())
             {
                 if(c.getId()==vote.getPollSubjectId())
                 {
@@ -122,6 +123,7 @@ public class BallotController {
                 }
             }
             //en ordre descendant, c scuff, see line 103, problem steems from line 118
+            System.out.println("cand " + c.getId() + " has " + currentCandidatePoints);
             if(currentCandidatePoints>winnerPoint)
             {
                 winnerPoint=currentCandidatePoints;

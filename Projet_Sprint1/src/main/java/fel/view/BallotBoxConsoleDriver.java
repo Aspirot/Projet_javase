@@ -35,14 +35,16 @@ public class BallotBoxConsoleDriver {
 
         //Create an elector and add him to an election
         electorController.createElector("Denis","Aspirot",1,"denisaspicot@gmail.com");
-        electorController.addElectorToElection(11,2);
+        //electorController.addElectorToElection(11,2);
 
         //Show difference from line 35 (after adding an elector)
         //System.out.println("Number of electors for ballot 2 is : " + ballotController.getNumberOfElectorsForBallotById(2));
 
         //Create votes for the previously added elector
-        voteController.createVote(LocalDate.now(),1,2,1,11);
-        voteController.createVote(LocalDate.now(),2,2,2,11);
+        //voteController.createVote(LocalDate.now(),1,1,1,11);
+        //voteController.createVote(LocalDate.now(),2,1,2,11);
+        //voteController.createVote(LocalDate.now(),3,1,4,11);
+        //voteController.createVote(LocalDate.now(),4,1,3,11);
 
         //Show difference from line 33
         //BallotController.getBallotDAO().fetchBallotById(2).stream().forEach(System.out::println);
@@ -56,11 +58,9 @@ public class BallotBoxConsoleDriver {
 
         System.out.println("Winner of ballot 1 with Lone-Scan is : " + ballotController.findWinnerUsingLoneScan(1));
         System.out.println("Winner of ballot 2 with Lone-Scan is : " + ballotController.findWinnerUsingLoneScan(2));
-        System.out.println("Winner of ballot 3 with Lone-Scan is : " + ballotController.findWinnerUsingLoneScan(3));
         VoteController.getVoteDAO().getAllVotes().stream().forEach(System.out::println);
         System.out.println("Winner of ballot 1 with Poly-Scan is : " + ballotController.findWinnerUsingPolyScan(1));
-        System.out.println("Winner of ballot 2 with Poly-Scan is : ");
-        System.out.println("Winner of ballot 3 with Poly-Scan is : ");
+        System.out.println("Winner of ballot 2 with Poly-Scan is : " + ballotController.findWinnerUsingPolyScan(2));
 
 
     }

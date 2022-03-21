@@ -71,22 +71,19 @@ public class InMemoryRepository {
         this.posts = postGenerator.list(12).get();
         this.electors = electorGenerator.list(10).get();
         this.candidates = candidateGenerator.list(5).get();
-        this.ballots = ballotGenerator.list(3).get();
+        this.ballots = ballotGenerator.list(2).get();
 
         //ballot 1 has 4 candidates
         this.ballots.get(0).addCandidate(this.candidates.get(0));
+        this.ballots.get(0).addCandidate(this.candidates.get(1));
         this.ballots.get(0).addCandidate(this.candidates.get(2));
         this.ballots.get(0).addCandidate(this.candidates.get(3));
-        this.ballots.get(0).addCandidate(this.candidates.get(4));
-        //ballot 2 has 2 candidates
+        //ballot 2 has 5 candidates
+        this.ballots.get(1).addCandidate(this.candidates.get(0));
         this.ballots.get(1).addCandidate(this.candidates.get(1));
+        this.ballots.get(1).addCandidate(this.candidates.get(2));
         this.ballots.get(1).addCandidate(this.candidates.get(3));
-        //ballot 3 has 5 candidates
-        this.ballots.get(2).addCandidate(this.candidates.get(0));
-        this.ballots.get(2).addCandidate(this.candidates.get(1));
-        this.ballots.get(2).addCandidate(this.candidates.get(2));
-        this.ballots.get(2).addCandidate(this.candidates.get(3));
-        this.ballots.get(2).addCandidate(this.candidates.get(4));
+        this.ballots.get(1).addCandidate(this.candidates.get(4));
 
         //ballot 1 has 7 electors
         this.ballots.get(0).addElector(this.electors.get(0));
@@ -96,22 +93,17 @@ public class InMemoryRepository {
         this.ballots.get(0).addElector(this.electors.get(7));
         this.ballots.get(0).addElector(this.electors.get(8));
         this.ballots.get(0).addElector(this.electors.get(9));
-        //ballot 2 has 4 electors
+        //ballot 2 has 10 electors
+        this.ballots.get(1).addElector(this.electors.get(0));
         this.ballots.get(1).addElector(this.electors.get(1));
         this.ballots.get(1).addElector(this.electors.get(2));
         this.ballots.get(1).addElector(this.electors.get(3));
+        this.ballots.get(1).addElector(this.electors.get(4));
+        this.ballots.get(1).addElector(this.electors.get(5));
+        this.ballots.get(1).addElector(this.electors.get(6));
+        this.ballots.get(1).addElector(this.electors.get(7));
         this.ballots.get(1).addElector(this.electors.get(8));
-        //ballot 3 has 10 electors
-        this.ballots.get(2).addElector(this.electors.get(0));
-        this.ballots.get(2).addElector(this.electors.get(1));
-        this.ballots.get(2).addElector(this.electors.get(2));
-        this.ballots.get(2).addElector(this.electors.get(3));
-        this.ballots.get(2).addElector(this.electors.get(4));
-        this.ballots.get(2).addElector(this.electors.get(5));
-        this.ballots.get(2).addElector(this.electors.get(6));
-        this.ballots.get(2).addElector(this.electors.get(7));
-        this.ballots.get(2).addElector(this.electors.get(8));
-        this.ballots.get(2).addElector(this.electors.get(9));
+        this.ballots.get(1).addElector(this.electors.get(9));
 
         this.votes = new ArrayList<>();
         for (Ballot ballot:this.ballots) {
