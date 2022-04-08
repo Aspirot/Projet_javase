@@ -77,7 +77,7 @@ public class InMemoryRepository {
         this.ballots.get(0).addCandidate(this.candidates.get(0));
         this.ballots.get(0).addCandidate(this.candidates.get(1));
         this.ballots.get(0).addCandidate(this.candidates.get(2));
-        this.ballots.get(0).addCandidate(this.candidates.get(3));
+        this.ballots.get(0).addCandidate(this.candidates.get(4));
         //ballot 2 has 5 candidates
         this.ballots.get(1).addCandidate(this.candidates.get(0));
         this.ballots.get(1).addCandidate(this.candidates.get(1));
